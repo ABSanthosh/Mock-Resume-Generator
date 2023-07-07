@@ -53,7 +53,7 @@ export default function Home() {
               <img src={item.img} />
             </div>
             <div className="Home__templateCard--bottom">
-              Resume Template {item.id + 1}
+              Resume Template {item.id}
             </div>
           </Link>
         ))}
