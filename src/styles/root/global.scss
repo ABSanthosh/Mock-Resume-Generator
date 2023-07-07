@@ -1,4 +1,6 @@
 @import "./fonts.scss";
+@import "./FancyInput.scss";
+@import "./FancyButton.scss";
 
 * {
   margin: 0;
@@ -57,6 +59,8 @@ body,
   overflow-x: hidden;
   @include box(100vw, auto);
   @include make-flex($just: flex-start);
+  min-height: 100vh;
+  color: #1e1e1e;
 
   @include respondAt(915px) {
     width: 100vw;

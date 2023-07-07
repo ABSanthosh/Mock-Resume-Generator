@@ -15,7 +15,7 @@ const nextConfig = {
     return config;
   },
   sassOptions: {
-    additionalData: `@import "src/styles/root/_mixins.scss";`,
+    additionalData: `@import "src/styles/root/_mixins.scss"; @import "src/styles/root/_colors.scss";`,
   },
 };
 

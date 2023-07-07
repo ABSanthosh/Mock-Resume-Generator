@@ -1,0 +1,19 @@
+.LabelInput {
+  @include box($height: auto);
+  @include make-flex($align: flex-start);
+  gap: 7px;
+
+  label {
+    color: #344054;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #344054;
+  }
+
+  &__error {
+    @include box(100%, auto);
+    font-size: 13px;
+    color: red;
+    text-align: left;
+  }
+}

@@ -10,7 +10,6 @@
   &__desc {
     font-family: "Poppins", sans-serif;
     text-align: center;
-    color: #1e1e1e;
     @include make-flex();
     gap: 20px;
     @include box(82%, auto);

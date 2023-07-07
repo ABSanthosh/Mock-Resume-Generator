@@ -1,0 +1,92 @@
+.Template {
+  @include box();
+  background-color: #f7f8f9;
+  min-height: 100vh;
+  @include make-flex();
+  gap: 20px;
+
+  &__form {
+    border-radius: 16px;
+    background-color: #fff;
+    @include box(585px);
+    // max-width: 960px;
+    min-height: 500px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.04);
+    font-family: "Poppins", sans-serif;
+    border: 1px solid #e1e1e1;
+    padding: 28px;
+    @include make-flex();
+    gap: 30px;
+  }
+
+  &__formSection {
+    @include make-flex($just: flex-start);
+    gap: 10px;
+    h4 {
+      font-size: 24px;
+      color: #666666;
+      white-space: nowrap;
+      @include box($height: auto);
+      @include make-flex($dir: row);
+
+      span {
+        @include box();
+        @include make-flex($dir: row);
+        position: relative;
+
+        &:before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          right: 0;
+          transform: translateY(-50%);
+          @include box(calc(100% - 10px), 1px);
+          background-color: #cbcaca;
+        }
+      }
+    }
+
+    &--subBox,
+    &--subBoxRow,
+    &--subBoxCol {
+      padding: 15px;
+      @include box($height: auto);
+      border: 1px solid #e1e1e1;
+      @include make-flex($just: flex-start);
+      border-radius: 8px;
+      position: relative;
+    }
+
+    &--row,
+    &--subBoxRow {
+      @include make-flex($dir: row, $just: flex-start);
+      gap: 10px;
+      @include box($height: auto);
+    }
+
+    &--subBoxCol {
+      @include make-flex($dir: column, $just: flex-start);
+      gap: 10px;
+      @include box($height: auto);
+    }
+
+    &--subBoxRowClose {
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-radius: 0 8px 0 8px;
+      background-color: #fff;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      border-left: 1px solid #e1e1e1;
+      border-bottom: 1px solid #e1e1e1;
+      border-top: 0px;
+      border-right: 0px;
+
+      &:hover {
+        background-color: #ff9696;
+      }
+    }
+  }
+}

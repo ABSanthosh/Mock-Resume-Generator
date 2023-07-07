@@ -1,0 +1,76 @@
+.FancyButton {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid $BorderColor;
+  color: $TextColor;
+  font-size: 15px;
+
+  @include make-flex($dir: row);
+  padding: 8px 10px;
+  gap: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  span[data-icon] {
+    color: inherit;
+  }
+
+  &:hover {
+    background-color: $HoverBGColor;
+  }
+
+  &:active {
+    background-color: darken($HoverBGColor, 10%);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px $TextColor;
+    background-color: lighten($HoverBGColor, 10%);
+  }
+
+  &:disabled {
+    background-color: #f4f5f6;
+    color: #84878d;
+    border: 1px solid #d0d5dd;
+    cursor: not-allowed;
+  }
+
+  &--fullWidth {
+    @include box(100%, 36px);
+  }
+
+  // Types
+  &[data-type="green-solid"] {
+    background-color: $DarkGreen;
+    color: #fff;
+    border: 1px solid $DarkGreen;
+
+    &:hover {
+      background-color: darken($DarkGreen, 10%);
+    }
+
+    &:active {
+      background-color: darken($DarkGreen, 20%);
+    }
+
+    &:disabled {
+      background-color: #f4f5f6;
+      color: #84878d;
+      border: 1px solid #d0d5dd;
+      cursor: not-allowed;
+    }
+  }
+
+  &[data-type="green-outline"] {
+    border: 1.5px solid $DarkGreen;
+    background-color: transparent;
+    color: $DarkGreen;
+
+    &:hover {
+      background-color: darken($HoverBGColor, 10%);
+      color: $TextColor;
+    }
+  }
+}
