@@ -22,7 +22,11 @@ export default function Home() {
         {Array(3)
           .fill()
           .map((_, i) => (
-            <Link className="Home__templateCard" href={`/template/${i + 1}`}>
+            <Link
+              className="Home__templateCard"
+              href={`/template/${i + 1}`}
+              key={i}
+            >
               <div className="Home__templateCard--overlay">
                 <span>Use this template</span>
               </div>

@@ -73,4 +73,26 @@
       color: $TextColor;
     }
   }
+  
+  &[data-type="red-solid"] {
+    background-color: $DarkRed;
+    color: #fff;
+    border: 1px solid $DarkRed;
+
+    &:hover {
+      background-color: darken($DarkRed, 10%);
+    }
+
+    &:active {
+      background-color: darken($DarkRed, 20%);
+    }
+
+    &:disabled {
+      background-color: #f4f5f6;
+      color: #84878d;
+      border: 1px solid #d0d5dd;
+      cursor: not-allowed;
+    }
+  }
+
 }

@@ -4,6 +4,7 @@
   min-height: 100vh;
   @include make-flex();
   gap: 20px;
+  padding: 40px 0;
 
   &__form {
     border-radius: 16px;
@@ -22,6 +23,7 @@
   &__formSection {
     @include make-flex($just: flex-start);
     gap: 10px;
+    width: 100%;
     h4 {
       font-size: 24px;
       color: #666666;
@@ -87,6 +89,23 @@
       &:hover {
         background-color: #ff9696;
       }
+    }
+  }
+}
+
+.FlashcardWrapper {
+  &__item {
+    &--front,
+    &--back {
+      border-radius: 10px !important;
+      padding: 15px;
+      border: 1px solid #e1e1e1;
+      box-shadow: none !important;
+    }
+
+    &--content {
+      @include make-flex();
+      gap: 10px;
     }
   }
 }

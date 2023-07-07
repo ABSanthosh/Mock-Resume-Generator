@@ -1,7 +1,12 @@
+import EducationBox from "@/components/EducationBox";
+import ExperienceBox from "@/components/ExperienceBox";
 import LabelInput from "@/components/LabelInput/LabelInput";
+import SkillBox from "@/components/SkillBox";
 import "@/styles/routes/template.scss";
 import { FieldArray, FormikProvider, useFormik } from "formik";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
+import { customAlphabet } from "nanoid";
+import AchievementBox from "@/components/AchievementBox";
 
 export async function getServerSideProps(context) {
   const templateId = context.query.templateId;
@@ -13,6 +18,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function Template({ templateId }) {
+  const nanoid = customAlphabet("1234567890abcdef", 7);
   const formik = useFormik({
     initialValues: {
       templateId: templateId,
@@ -138,29 +144,16 @@ export default function Template({ templateId }) {
               name="skills"
               render={(arrayHelpers) => (
                 <Fragment>
-                  {formik.values.skills.map((_, index) => (
-                    <div
-                      className="Template__formSection--subBoxRow"
-                      key={index}
-                    >
-                      <button
-                        className="FancyButton Template__formSection--subBoxRowClose"
-                        type="button"
-                        onClick={() => arrayHelpers.remove(index)}
-                      >
-                        X
-                      </button>
-                      <LabelInput
-                        id="Skill"
-                        isMandatory
-                        label="Skill"
-                        name={`skills.${index}`}
-                        value={formik.values.skills[index]}
-                        placeholder="Enter your skill"
-                        onChange={formik.handleChange}
+                  {formik.values.skills.map((_, index) => {
+                    return (
+                      <SkillBox
+                        arrayHelpers={arrayHelpers}
+                        formik={formik}
+                        key={nanoid()}
+                        index={index}
                       />
-                    </div>
-                  ))}
+                    );
+                  })}
                   <button
                     className="FancyButton"
                     type="button"
@@ -182,47 +175,12 @@ export default function Template({ templateId }) {
               render={(arrayHelpers) => (
                 <Fragment>
                   {formik.values.education.map((_, index) => (
-                    <div
-                      className="Template__formSection--subBoxCol"
-                      key={index}
-                    >
-                      <div className="Template__formSection--row" key={index}>
-                        <button
-                          className="FancyButton Template__formSection--subBoxRowClose"
-                          type="button"
-                          onClick={() => arrayHelpers.remove(index)}
-                        >
-                          X
-                        </button>
-                        <LabelInput
-                          id="School Name"
-                          isMandatory
-                          label="School Name"
-                          name={`education.${index}.schoolName`}
-                          value={formik.values.education[index].schoolName}
-                          placeholder="Enter your school name"
-                          onChange={formik.handleChange}
-                        />
-                        <LabelInput
-                          id="Passing Year"
-                          isMandatory
-                          label="Passing Year"
-                          name={`education.${index}.passingYear`}
-                          value={formik.values.education[index].passingYear}
-                          placeholder="Enter your passing year"
-                          onChange={formik.handleChange}
-                        />
-                      </div>
-                      <LabelInput
-                        id="Description"
-                        isMandatory
-                        label="Description"
-                        name={`education.${index}.description`}
-                        value={formik.values.education[index].description}
-                        placeholder="Enter your description"
-                        onChange={formik.handleChange}
-                      />
-                    </div>
+                    <EducationBox
+                      arrayHelpers={arrayHelpers}
+                      formik={formik}
+                      key={nanoid()}
+                      index={index}
+                    />
                   ))}
                   <button
                     className="FancyButton"
@@ -251,47 +209,12 @@ export default function Template({ templateId }) {
               render={(arrayHelpers) => (
                 <Fragment>
                   {formik.values.experience.map((_, index) => (
-                    <div
-                      className="Template__formSection--subBoxCol"
-                      key={index}
-                    >
-                      <div className="Template__formSection--row">
-                        <button
-                          className="FancyButton Template__formSection--subBoxRowClose"
-                          type="button"
-                          onClick={() => arrayHelpers.remove(index)}
-                        >
-                          X
-                        </button>
-                        <LabelInput
-                          id="Company Name"
-                          isMandatory
-                          label="Company Name"
-                          name={`experience.${index}.companyName`}
-                          value={formik.values.experience[index].companyName}
-                          placeholder="Enter your company name"
-                          onChange={formik.handleChange}
-                        />
-                        <LabelInput
-                          id="Passing Year"
-                          isMandatory
-                          label="Passing Year"
-                          name={`experience.${index}.passingYear`}
-                          value={formik.values.experience[index].passingYear}
-                          placeholder="Enter your passing year"
-                          onChange={formik.handleChange}
-                        />
-                      </div>
-                      <LabelInput
-                        id="Responsibilities"
-                        isMandatory
-                        label="Responsibilities"
-                        name={`experience.${index}.responsibilities`}
-                        value={formik.values.experience[index].responsibilities}
-                        placeholder="Enter your responsibilities"
-                        onChange={formik.handleChange}
-                      />
-                    </div>
+                    <ExperienceBox
+                      arrayHelpers={arrayHelpers}
+                      formik={formik}
+                      key={nanoid()}
+                      index={index}
+                    />
                   ))}
                   <button
                     className="FancyButton"
@@ -320,36 +243,12 @@ export default function Template({ templateId }) {
               render={(arrayHelpers) => (
                 <Fragment>
                   {formik.values.achievements.map((_, index) => (
-                    <div
-                      className="Template__formSection--subBoxRow"
-                      key={index}
-                    >
-                      <button
-                        className="FancyButton Template__formSection--subBoxRowClose"
-                        type="button"
-                        onClick={() => arrayHelpers.remove(index)}
-                      >
-                        X
-                      </button>
-                      <LabelInput
-                        id="Field"
-                        isMandatory
-                        label="Field"
-                        name={`achievements.${index}.field`}
-                        value={formik.values.achievements[index].field}
-                        placeholder="Enter your field"
-                        onChange={formik.handleChange}
-                      />
-                      <LabelInput
-                        id="Award"
-                        isMandatory
-                        label="Award"
-                        name={`achievements.${index}.award`}
-                        value={formik.values.achievements[index].award}
-                        placeholder="Enter your award"
-                        onChange={formik.handleChange}
-                      />
-                    </div>
+                    <AchievementBox
+                      arrayHelpers={arrayHelpers}
+                      formik={formik}
+                      key={nanoid()}
+                      index={index}
+                    />
                   ))}
                   <button
                     className="FancyButton"
