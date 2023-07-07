@@ -1,0 +1,130 @@
+.Home {
+  @include box();
+  max-width: 960px;
+  padding-top: 130px;
+  padding-bottom: 50px;
+
+  @include make-flex();
+  gap: 60px;
+
+  &__desc {
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    color: #1e1e1e;
+    @include make-flex();
+    gap: 20px;
+    @include box(82%, auto);
+    margin: auto;
+
+    h1 {
+      font-weight: 700;
+      font-size: 50px;
+      line-height: 72px;
+    }
+    p {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 30px;
+    }
+  }
+
+  &__templates {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    grid-template-rows: 445px;
+    @include box(100%, 445px);
+  }
+
+  &__templateCard {
+    display: grid;
+    grid-template-rows: 1fr 100px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 1px solid #e4e4e4;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+
+    &:hover {
+      cursor: pointer;
+      scale: 1.1;
+    }
+
+    &--bg1 {
+      background-color: #e5e5f7;
+      opacity: 1;
+      background: linear-gradient(135deg, #d4d6ff55 25%, transparent 25%) -16px 0/
+          32px 32px,
+        linear-gradient(225deg, #d4d6ff 25%, transparent 25%) -16px 0/ 32px 32px,
+        linear-gradient(315deg, #d4d6ff55 25%, transparent 25%) 0px 0/ 32px 32px,
+        linear-gradient(45deg, #d4d6ff 25%, #e5e5f7 25%) 0px 0/ 32px 32px;
+    }
+
+    &--bg2 {
+      background-color: #e5e5f7;
+      opacity: 1;
+      background-image: linear-gradient(135deg, #d4d6ff 25%, transparent 25%),
+        linear-gradient(225deg, #d4d6ff 25%, transparent 25%),
+        linear-gradient(45deg, #d4d6ff 25%, transparent 25%),
+        linear-gradient(315deg, #d4d6ff 25%, #e5e5f7 25%);
+      background-position: 16px 0, 16px 0, 0 0, 0 0;
+      background-size: 32px 32px;
+      background-repeat: repeat;
+    }
+
+    &--bg3 {
+      background-color: #e5e5f7;
+      opacity: 1;
+      background-image: linear-gradient(135deg, #d4d6ff 25%, transparent 25%),
+        linear-gradient(225deg, #d4d6ff 25%, transparent 25%),
+        linear-gradient(45deg, #d4d6ff 25%, transparent 25%),
+        linear-gradient(315deg, #d4d6ff 25%, #e5e5f7 25%);
+      background-position: 16px 0, 16px 0, 0 0, 0 0;
+      background-size: 16px 16px;
+      background-repeat: repeat;
+    }
+
+    &--overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      @include box();
+      @include make-flex();
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: all 0.3s ease-in-out;
+      z-index: 1;
+      &:hover {
+        opacity: 1;
+      }
+
+      span {
+        background-color: lightcyan;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+    }
+
+    &--top {
+      border-radius: 10px 10px 0 0;
+      @include make-flex();
+      img {
+        @include box(80%, auto);
+        transform: translateY(30px);
+        border-radius: 7px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    &--bottom {
+      background-color: #f2f2f2;
+      border-radius: 0 0 10px 10px;
+      @include box();
+      @include make-flex();
+      font-family: "Dancing Script", cursive;
+      font-size: 30px;
+      padding-top: 20px;
+    }
+  }
+}
