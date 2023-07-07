@@ -4,7 +4,7 @@ import LabelInput from "@/components/LabelInput/LabelInput";
 import SkillBox from "@/components/SkillBox";
 import "@/styles/routes/template.scss";
 import { FieldArray, FormikProvider, useFormik } from "formik";
-import { Fragment } from "react";
+import { Fragment, useMemo, useRef } from "react";
 import { customAlphabet } from "nanoid";
 import AchievementBox from "@/components/AchievementBox";
 import Header from "@/components/Header/Header";
@@ -20,6 +20,7 @@ export async function getServerSideProps(context) {
 
 export default function Template({ templateId }) {
   const nanoid = customAlphabet("1234567890abcdef", 7);
+
   const formik = useFormik({
     initialValues: {
       templateId: templateId,
@@ -32,10 +33,16 @@ export default function Template({ templateId }) {
       jobTitle: "",
       careerObjective: "",
       //   skills
-      skills: [""],
+      skills: [
+        {
+          id: nanoid(),
+          skill: "",
+        },
+      ],
       //   education
       education: [
         {
+          id: nanoid(),
           schoolName: "",
           passingYear: "",
           description: "",
@@ -44,6 +51,7 @@ export default function Template({ templateId }) {
       //   experience
       experience: [
         {
+          id: nanoid(),
           companyName: "",
           passingYear: "",
           responsibilities: "",
@@ -52,6 +60,7 @@ export default function Template({ templateId }) {
       //   achievements
       achievements: [
         {
+          id: nanoid(),
           field: "",
           award: "",
         },
@@ -146,12 +155,12 @@ export default function Template({ templateId }) {
               name="skills"
               render={(arrayHelpers) => (
                 <Fragment>
-                  {formik.values.skills.map((_, index) => {
+                  {formik.values.skills.map((item, index) => {
                     return (
                       <SkillBox
                         arrayHelpers={arrayHelpers}
                         formik={formik}
-                        key={nanoid()}
+                        key={item.id}
                         index={index}
                       />
                     );
@@ -159,7 +168,9 @@ export default function Template({ templateId }) {
                   <button
                     className="FancyButton"
                     type="button"
-                    onClick={() => arrayHelpers.push("")}
+                    onClick={() =>
+                      arrayHelpers.push({ id: nanoid(), skill: "" })
+                    }
                   >
                     Add Skill
                   </button>
@@ -176,11 +187,11 @@ export default function Template({ templateId }) {
               name="education"
               render={(arrayHelpers) => (
                 <Fragment>
-                  {formik.values.education.map((_, index) => (
+                  {formik.values.education.map((item, index) => (
                     <EducationBox
                       arrayHelpers={arrayHelpers}
                       formik={formik}
-                      key={nanoid()}
+                      key={item.id}
                       index={index}
                     />
                   ))}
@@ -189,6 +200,7 @@ export default function Template({ templateId }) {
                     type="button"
                     onClick={() =>
                       arrayHelpers.push({
+                        id: nanoid(),
                         schoolName: "",
                         passingYear: "",
                         description: "",
@@ -210,11 +222,11 @@ export default function Template({ templateId }) {
               name="experience"
               render={(arrayHelpers) => (
                 <Fragment>
-                  {formik.values.experience.map((_, index) => (
+                  {formik.values.experience.map((item, index) => (
                     <ExperienceBox
                       arrayHelpers={arrayHelpers}
                       formik={formik}
-                      key={nanoid()}
+                      key={item.id}
                       index={index}
                     />
                   ))}
@@ -223,6 +235,7 @@ export default function Template({ templateId }) {
                     type="button"
                     onClick={() =>
                       arrayHelpers.push({
+                        id: nanoid(),
                         companyName: "",
                         passingYear: "",
                         responsibilities: "",
@@ -244,11 +257,11 @@ export default function Template({ templateId }) {
               name="achievements"
               render={(arrayHelpers) => (
                 <Fragment>
-                  {formik.values.achievements.map((_, index) => (
+                  {formik.values.achievements.map((item, index) => (
                     <AchievementBox
                       arrayHelpers={arrayHelpers}
                       formik={formik}
-                      key={nanoid()}
+                      key={item.id}
                       index={index}
                     />
                   ))}
@@ -257,6 +270,7 @@ export default function Template({ templateId }) {
                     type="button"
                     onClick={() =>
                       arrayHelpers.push({
+                        id: nanoid(),
                         field: "",
                         award: "",
                       })

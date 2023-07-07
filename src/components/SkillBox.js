@@ -28,8 +28,8 @@ export default function SkillBox({ arrayHelpers, formik, index }) {
             id="Skill"
             isMandatory
             label="Skill"
-            name={`skills.${index}`}
-            value={formik.values.skills[index]}
+            name={`skills.${index}.skill`}
+            value={formik.values.skills[index].skill}
             placeholder="Enter your skill"
             onChange={formik.handleChange}
           />
