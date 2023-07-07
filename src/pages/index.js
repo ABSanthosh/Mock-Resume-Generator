@@ -1,9 +1,26 @@
+import Header from "@/components/Header/Header";
 import "@/styles/routes/home.scss";
 import Link from "next/link";
 
 export default function Home() {
+  const templates = [
+    {
+      id: 1,
+      img: "/template1.jpeg",
+    },
+    {
+      id: 2,
+      img: "/template2.jpeg",
+    },
+    {
+      id: 3,
+      img: "/template3.jpeg",
+    },
+  ];
+
   return (
     <div className="Home">
+      <Header />
       <section className="Home__desc">
         <h1>ATS-Friendly Resume Templates</h1>
         <p>
@@ -19,29 +36,27 @@ export default function Home() {
         </p>
       </section>
       <section className="Home__templates">
-        {Array(3)
-          .fill()
-          .map((_, i) => (
-            <Link
-              className="Home__templateCard"
-              href={`/template/${i + 1}`}
-              key={i}
+        {templates.map((item, i) => (
+          <Link
+            className="Home__templateCard"
+            href={`/template/${item.id}`}
+            key={i}
+          >
+            <div className="Home__templateCard--overlay">
+              <span>Use this template</span>
+            </div>
+            <div
+              className={`Home__templateCard--top Home__templateCard--bg${
+                (i + 1) % 3 === 0 ? 3 : (i + 1) % 3
+              }`}
             >
-              <div className="Home__templateCard--overlay">
-                <span>Use this template</span>
-              </div>
-              <div
-                className={`Home__templateCard--top Home__templateCard--bg${
-                  (i + 1) % 3 === 0 ? 3 : (i + 1) % 3
-                }`}
-              >
-                <img src="https://www.wozber.com/public/templates/v2/previews/en/3/resume-template-3-w364x1.png" />
-              </div>
-              <div className="Home__templateCard--bottom">
-                Resume Template {i + 1}
-              </div>
-            </Link>
-          ))}
+              <img src={item.img} />
+            </div>
+            <div className="Home__templateCard--bottom">
+              Resume Template {item.id + 1}
+            </div>
+          </Link>
+        ))}
       </section>
     </div>
   );

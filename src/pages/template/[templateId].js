@@ -7,6 +7,7 @@ import { FieldArray, FormikProvider, useFormik } from "formik";
 import { Fragment } from "react";
 import { customAlphabet } from "nanoid";
 import AchievementBox from "@/components/AchievementBox";
+import Header from "@/components/Header/Header";
 
 export async function getServerSideProps(context) {
   const templateId = context.query.templateId;
@@ -67,6 +68,7 @@ export default function Template({ templateId }) {
 
   return (
     <div className="Template">
+      <Header />
       <h1>Details</h1>
       <FormikProvider value={formik}>
         <form className="Template__form" onSubmit={formik.handleSubmit}>
